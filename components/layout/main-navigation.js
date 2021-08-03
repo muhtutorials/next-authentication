@@ -3,41 +3,41 @@ import { useSession, signOut } from 'next-auth/client';
 import classes from './main-navigation.module.css';
 
 export default function MainNavigation() {
-  const [session, loading] = useSession();
+    const [session, loading] = useSession();
 
-  function handleLogout() {
-    signOut();
-  }
+    function handleLogout() {
+        signOut();
+    }
 
-  return (
-    <header className={classes.header}>
-      <Link href='/'>
-        <a>
-          <div className={classes.logo}>Next Auth</div>
-        </a>
-      </Link>
-      <nav>
-        <ul>
-          {
-            !session && !loading &&
-              <li>
-                <Link href='/auth'>Login</Link>
-              </li>            
-          }
-          {
-            session &&
-              <li>
-                <Link href='/profile'>Profile</Link>
-              </li>
-          }
-          {
-            session &&
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-          }
-        </ul>
-      </nav>
-    </header>
-  );
+    return (
+        <header className={classes.header}>
+            <Link href='/'>
+                <a>
+                    <div className={classes.logo}>Next Auth</div>
+                </a>
+            </Link>
+            <nav>
+                <ul>
+                    {
+                        !session && !loading &&
+                            <li>
+                                <Link href='/auth'>Login</Link>
+                            </li>
+                    }
+                    {
+                        session &&
+                            <li>
+                                <Link href='/profile'>Profile</Link>
+                            </li>
+                    }
+                    {
+                        session &&
+                            <li>
+                                <button onClick={handleLogout}>Logout</button>
+                            </li>
+                    }
+                </ul>
+            </nav>
+        </header>
+    );
 }
